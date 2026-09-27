@@ -2,10 +2,13 @@ const { Company } = require('../models/sequelize');
 
 async function getAll(req, res) {
   // TODO CHALLENGE 03: construir el filtro de Sequelize a partir de req.query.industry
+  const {industry} = req.query;
   const where = {};
+  if (industry){
+    where.industry = industry;
+  }
 
   const companies = await Company.findAll({ where, order: [['id', 'ASC']] });
-
   res.status(200).json(companies);
 }
 
