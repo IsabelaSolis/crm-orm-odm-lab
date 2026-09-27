@@ -1,8 +1,12 @@
 const Activity = require('../models/mongoose/activity');
 
 async function getAll(req, res) {
-  // TODO CHALLENGE 04: construir el filtro de Mongoose a partir de req.query.type
+  // Corregifo devuleve actividades dependiendo de su tipo
+  const {type} = req.query;
   const filter = {};
+  if (type){
+    filter.type = type;
+  }
 
   // Corregido ahora  recuperar todas las actividades con Mongoose
   const activities = await Activity.find(filter);
